@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom"; // Temporarily disabled
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { IUser } from "@/types";
