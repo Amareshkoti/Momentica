@@ -25,27 +25,18 @@ const App = () => {
     <main className="flex h-screen">
       <ConfigError />
       <DebugInfo />
-      <Routes>
-        {/* public routes */}
-        <Route element={<AuthLayout />}>
-          <Route path="/sign-in" element={<SigninForm />} />
-          <Route path="/sign-up" element={<SignupForm />} />
-        </Route>
-
-        {/* private routes */}
-        <Route element={<RootLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/saved" element={<Saved />} />
-          <Route path="/all-users" element={<AllUsers />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/update-post/:id" element={<EditPost />} />
-          <Route path="/posts/:id" element={<PostDetails />} />
-          <Route path="/profile/:id/*" element={<Profile />} />
-          <Route path="/update-profile/:id" element={<UpdateProfile />} />
-        </Route>
-      </Routes>
-
+      <div className="flex-center flex-col w-full">
+        <h1 className="h1-bold text-white mb-4">Welcome to Snapgram!</h1>
+        <p className="text-light-3 mb-6">Your social media app is running successfully.</p>
+        <div className="flex gap-4">
+          <a href="/sign-up" className="shad-button_primary px-6 py-2 rounded-lg">
+            Sign Up
+          </a>
+          <a href="/sign-in" className="shad-button_dark_4 px-6 py-2 rounded-lg">
+            Sign In
+          </a>
+        </div>
+      </div>
       <Toaster />
     </main>
   );

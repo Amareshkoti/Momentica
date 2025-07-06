@@ -71,14 +71,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const cookieFallback = localStorage.getItem("cookieFallback");
     const isOnAuthPage = window.location.pathname === "/sign-in" || window.location.pathname === "/sign-up";
     
-    if (
-      !isOnAuthPage &&
-      (cookieFallback === "[]" ||
-      cookieFallback === null ||
-      cookieFallback === undefined)
-    ) {
-      navigate("/sign-in");
-    }
+    // Temporarily disable redirect for production debugging
+    // if (
+    //   !isOnAuthPage &&
+    //   (cookieFallback === "[]" ||
+    //   cookieFallback === null ||
+    //   cookieFallback === undefined)
+    // ) {
+    //   navigate("/sign-in");
+    // }
 
     checkAuthUser();
   }, []);
