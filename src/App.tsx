@@ -1,27 +1,46 @@
+import { AuthProvider } from "@/context/AuthContext";
+import { QueryProvider } from "@/lib/react-query/QueryProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { ConfigError, DebugInfo } from "@/components/shared";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthLayout from "./_auth/AuthLayout";
+import RootLayout from "./_root/RootLayout";
+import { AllUsers, CreatePost, EditPost, Explore, Home, LikedPosts, PostDetails, Profile, Saved, UpdateProfile } from "./_root/pages";
+import SigninForm from "./_auth/forms/SigninForm";
+import SignupForm from "./_auth/forms/SignupForm";
 
 import "./globals.css";
 
 const App = () => {
   return (
-    <main className="flex h-screen">
-      <ConfigError />
-      <DebugInfo />
-      <div className="flex-center flex-col w-full">
-        <h1 className="h1-bold text-white mb-4">Welcome to Snapgram!</h1>
-        <p className="text-light-3 mb-6">Your social media app is running successfully.</p>
-        <div className="flex gap-4">
-          <a href="/sign-up" className="shad-button_primary px-6 py-2 rounded-lg">
-            Sign Up
-          </a>
-          <a href="/sign-in" className="shad-button_dark_4 px-6 py-2 rounded-lg">
-            Sign In
-          </a>
-        </div>
-      </div>
-      <Toaster />
-    </main>
+    <QueryProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* public routes */}
+            <Route element={<AuthLayout />}>
+              <Route path="/sign-in" element={<SigninForm />} />
+              <Route path="/sign-up" element={<SignupForm />} />
+            </Route>
+
+            {/* private routes */}
+            <Route element={<RootLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/all-users" element={<AllUsers />} />
+              <Route path="/saved" element={<Saved />} />
+              <Route path="/liked-posts" element={<LikedPosts />} />
+              <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/update-post/:id" element={<EditPost />} />
+              <Route path="/posts/:id" element={<PostDetails />} />
+              <Route path="/profile/:id/*" element={<Profile />} />
+              <Route path="/update-profile/:id" element={<UpdateProfile />} />
+            </Route>
+          </Routes>
+          <Toaster />
+        </BrowserRouter>
+      </AuthProvider>
+    </QueryProvider>
   );
 };
+
 export default App;
