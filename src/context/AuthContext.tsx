@@ -34,7 +34,7 @@ type IContextType = {
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate(); // Temporarily disabled
   const [user, setUser] = useState<IUser>(INITIAL_USER);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,8 +68,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Only redirect if user is not on auth pages
-    const cookieFallback = localStorage.getItem("cookieFallback");
-    const isOnAuthPage = window.location.pathname === "/sign-in" || window.location.pathname === "/sign-up";
+    // const cookieFallback = localStorage.getItem("cookieFallback");
+    // const isOnAuthPage = window.location.pathname === "/sign-in" || window.location.pathname === "/sign-up";
     
     // Temporarily disable redirect for production debugging
     // if (
